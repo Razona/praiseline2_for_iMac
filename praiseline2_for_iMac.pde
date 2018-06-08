@@ -27,7 +27,7 @@ boolean message=false;//メッセージ画面に遷移するかの判定。
 boolean layout=false;//レイアウト変更に関する判定。未実装。
 boolean mainMode=true;//メイン画面のオンオフの判定。デフォルトはオン。
 boolean readme=false;//リドミ画面に遷移する判定。機能は実装してるけど、遷移先は空。
-
+boolean popSwitch=false;
 
 int ensyutu_counter=0;
 int counter=100;//起動処理の時間を処理するカウンター。
@@ -117,6 +117,7 @@ void switchs(){
   rect(switchX*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
   textSize(16*gamen_hiritu);
   textAlign(CENTER,CENTER);
+  fill(255);
   text("readme",switchX*gamen_hiritu,switchY1*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
   text("layout",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
   text("message",switchX*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
@@ -307,50 +308,86 @@ void praisline(){
   stroke(255);
 }
 
+void message_pop(){
+  message_pop_hinagata(x9,y3,"1");
 
+}
+
+void message_pop_hinagata(float info_x,float info_y,String num){
+  float gosa=20;
+
+  float xmin=info_x-gosa;
+  float xmax=info_x+gosa;
+  float ymin=info_y-gosa;
+  float ymax=info_y+gosa;
+
+  if (mousePressed==true&&mouseX < xmax && xmin < mouseX && mouseY < ymax && ymin < mouseY){
+    popSwitch=true;
+  }
+
+  if(popSwitch==true){
+    fill(0,200);
+    stroke(255*gamen_hiritu,200*gamen_hiritu);
+    rect(490*gamen_hiritu,130*gamen_hiritu,620*gamen_hiritu,500*gamen_hiritu);
+    fill(50,230);
+    rect(1070*gamen_hiritu,130*gamen_hiritu,40*gamen_hiritu,40*gamen_hiritu);
+    line(1070*gamen_hiritu,130*gamen_hiritu,1110*gamen_hiritu,170*gamen_hiritu);
+    line(1110*gamen_hiritu,130*gamen_hiritu,1070*gamen_hiritu,170*gamen_hiritu);
+    if (mousePressed==true&&mouseX < 1110&& 1070 < mouseX && mouseY < 170 && 130 < mouseY){
+      popSwitch=false;
+    }
+
+    fill(255);
+  }
+
+}
 
 //マウスオーバーで席の情報を表示。氏名と部署名かな。
 //その人からのメッセージがある場合はクリックしたらメモを表示
 //seki_info_hinagata に情報を送るための関数。パワーコード。
 void seki_info(){
-  seki_info_hinagata("ceo","Miyashita Rion",x1,y1);
-  seki_info_hinagata("cto","Abe Hideaki",x2,y1);
-  seki_info_hinagata("cco","Ooishi Morihiro",x3,y1);
 
-  seki_info_hinagata("director","Sugiura Keisuke",x4,y2);
-  seki_info_hinagata("director","Uchida Hideo",x5,y2);
-  seki_info_hinagata("director","Yoshioka Kano",x6,y2);
-  seki_info_hinagata("director","Inoue Hikaru",x7,y2);
-  seki_info_hinagata("catalyst","Koizumi Ginzou",x8,y2);
-  seki_info_hinagata("catalyst","Higashiyama Waka",x9,y2);
+  if (popSwitch==false){
+    seki_info_hinagata("ceo","Miyashita Rion",x1,y1);
+    seki_info_hinagata("cto","Abe Hideaki",x2,y1);
+    seki_info_hinagata("cco","Ooishi Morihiro",x3,y1);
 
-  seki_info_hinagata("director","Nozaki Rui",x4,y3);
-  seki_info_hinagata("director","Tazawa Makiko",x5,y3);
-  seki_info_hinagata("director","Shiomi Yoshirou",x6,y3);
-  seki_info_hinagata("director","Yanagihara Kaho",x7,y3);
-  seki_info_hinagata("engineer","Niikura Taizou",x8,y3);
-  seki_info_hinagata("engineer","Niikura Taizou",x9,y3);
+    seki_info_hinagata("director","Sugiura Keisuke",x4,y2);
+    seki_info_hinagata("director","Uchida Hideo",x5,y2);
+    seki_info_hinagata("director","Yoshioka Kano",x6,y2);
+    seki_info_hinagata("director","Inoue Hikaru",x7,y2);
+    seki_info_hinagata("catalyst","Koizumi Ginzou",x8,y2);
+    seki_info_hinagata("catalyst","Higashiyama Waka",x9,y2);
 
-  seki_info_hinagata("designer","Kameyama Kureha",x4,y4);
-  seki_info_hinagata("designer","Koga Tomoji",x5,y4);
-  seki_info_hinagata("designer","Seo Masako",x6,y4);
-  seki_info_hinagata("designer","Murase Tokio",x7,y4);
-  seki_info_hinagata("engineer","Shiraishi Yoshinobu",x8,y4);
-  seki_info_hinagata("engineer","Mimura Haruna",x9,y4);
+    seki_info_hinagata("director","Nozaki Rui",x4,y3);
+    seki_info_hinagata("director","Tazawa Makiko",x5,y3);
+    seki_info_hinagata("director","Shiomi Yoshirou",x6,y3);
+    seki_info_hinagata("director","Yanagihara Kaho",x7,y3);
+    seki_info_hinagata("engineer","Niikura Taizou",x8,y3);
+    seki_info_hinagata("engineer","Niikura Taizou",x9,y3);
 
-  seki_info_hinagata("designer","Hotta Haruka",x4,y5);
-  seki_info_hinagata("designer","Umemura Atsuhiko",x5,y5);
-  seki_info_hinagata("designer","Nishi Masayasu",x6,y5);
-  seki_info_hinagata("engineer","KawaseT oshie",x7,y5);
-  seki_info_hinagata("engineer","Oonishi Tomekichi",x8,y5);
-  seki_info_hinagata("engineer","Oka Akihiro",x9,y5);
+    seki_info_hinagata("designer","Kameyama Kureha",x4,y4);
+    seki_info_hinagata("designer","Koga Tomoji",x5,y4);
+    seki_info_hinagata("designer","Seo Masako",x6,y4);
+    seki_info_hinagata("designer","Murase Tokio",x7,y4);
+    seki_info_hinagata("engineer","Shiraishi Yoshinobu",x8,y4);
+    seki_info_hinagata("engineer","Mimura Haruna",x9,y4);
 
-  // seki_info_hinagata("engineer","Kagawa Atsumori",x4,y6);
-  // seki_info_hinagata("engineer","Atsumi Katsuo",x5,y6);
-  // seki_info_hinagata("designer","Miyajima Tetsuo",x6,y6);
-  // seki_info_hinagata("designer","Yokoyama Kenji",x7,y6);
-  // seki_info_hinagata("director","Saegusa Norio",x8,y6);
-  // seki_info_hinagata("director","Horie Momoka",x9,y6);
+    seki_info_hinagata("designer","Hotta Haruka",x4,y5);
+    seki_info_hinagata("designer","Umemura Atsuhiko",x5,y5);
+    seki_info_hinagata("designer","Nishi Masayasu",x6,y5);
+    seki_info_hinagata("engineer","KawaseT oshie",x7,y5);
+    seki_info_hinagata("engineer","Oonishi Tomekichi",x8,y5);
+    seki_info_hinagata("engineer","Oka Akihiro",x9,y5);
+
+    // seki_info_hinagata("engineer","Kagawa Atsumori",x4,y6);
+    // seki_info_hinagata("engineer","Atsumi Katsuo",x5,y6);
+    // seki_info_hinagata("designer","Miyajima Tetsuo",x6,y6);
+    // seki_info_hinagata("designer","Yokoyama Kenji",x7,y6);
+    // seki_info_hinagata("director","Saegusa Norio",x8,y6);
+    // seki_info_hinagata("director","Horie Momoka",x9,y6);
+  }
+
 
 }
 
@@ -358,7 +395,7 @@ void seki_info_hinagata(String katagaki,String name,float info_x,float info_y){
   //マウスオーバーの判定を行うif文章。中身は未実装。
   //マウスオーバーしてたら四角と文章を作る的な。
 
-  float gosa=20;
+  float gosa=20*gamen_hiritu;
 
   float xmin=info_x-gosa;
   float xmax=info_x+gosa;
@@ -379,9 +416,7 @@ void seki_info_hinagata(String katagaki,String name,float info_x,float info_y){
     textSize(16*gamen_hiritu);
   }
 
-  if (mousePressed==true&&mouseX < xmax && xmin < mouseX && mouseY < ymax && ymin < mouseY){
-    // rect();
-  }
+
 
 }
 
@@ -537,14 +572,24 @@ void mainMode(){
 
 
     seki_info();
+
+    message_pop();
 }
 
 void readme_page(){
 
+  //全体の枠
   noFill();
-  rect(360*gamen_hiritu,50*gamen_hiritu,700*gamen_hiritu,620*gamen_hiritu);
+  // rect(360*gamen_hiritu,50*gamen_hiritu,700*gamen_hiritu,620*gamen_hiritu);
 
+  PImage how_to = loadImage("PraislineHow.jpg");
+  image(how_to,360*gamen_hiritu,50*gamen_hiritu,700*gamen_hiritu,620*gamen_hiritu);
 
+  //タイトル
+  // rect(360*gamen_hiritu,50*gamen_hiritu,700*gamen_hiritu,100*gamen_hiritu);
+  // textSize(50);
+  // text("How to use",360*gamen_hiritu,50*gamen_hiritu,700*gamen_hiritu,100*gamen_hiritu);
+  //
 
   //backボタン関係
   noFill();
@@ -559,7 +604,6 @@ void readme_page(){
 
   if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
     readme=false;
-    println("ああああ");
   }
 
   if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
