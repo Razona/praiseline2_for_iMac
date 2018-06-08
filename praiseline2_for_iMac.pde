@@ -559,7 +559,7 @@ void readme_page(){
 
   if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
     readme=false;
-    println(variables);
+    println("ああああ");
   }
 
   if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
