@@ -234,8 +234,8 @@ void seki_maru(){
     stroke(255);
 
     //コイツの画面って設定。　円のサイズも大きいし色も赤。
-    fill(180,30,30);
-    stroke(180,30,30);
+    // fill(180,30,30);
+    // stroke(180,30,30);
     ellipse(x4,y4,10*gamen_hiritu,10*gamen_hiritu);
 
     stroke(255);
@@ -410,9 +410,9 @@ if (gamen_hiritu==1){
 
     fill(50,200);
     stroke(255*gamen_hiritu,200*gamen_hiritu);
-    rect(1070*gamen_hiritu,130*gamen_hiritu,40*gamen_hiritu,40*gamen_hiritu);
-    line(1070*gamen_hiritu,130*gamen_hiritu,1110*gamen_hiritu,170*gamen_hiritu);
-    line(1110*gamen_hiritu,130*gamen_hiritu,1070*gamen_hiritu,170*gamen_hiritu);
+    rect(1075*gamen_hiritu,130*gamen_hiritu,40*gamen_hiritu,40*gamen_hiritu);
+    line(1075*gamen_hiritu,130*gamen_hiritu,1115*gamen_hiritu,170*gamen_hiritu);
+    line(1115*gamen_hiritu,130*gamen_hiritu,1075*gamen_hiritu,170*gamen_hiritu);
     if (mousePressed==true&&mouseX < 1110*gamen_hiritu&& 1070*gamen_hiritu < mouseX && mouseY < 170*gamen_hiritu && 130*gamen_hiritu < mouseY){
       popSwitch=false;
     }
@@ -720,7 +720,7 @@ void readme_page(){
 }
 
 
-//about usなページの実装。もうイラレでいいかな。
+//about usなページの実装。パンフのイラレデータから引っ張ります。
 void about_us_page(){
 
   PImage about_image=loadImage("about_us.png");
