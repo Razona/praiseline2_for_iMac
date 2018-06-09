@@ -1,7 +1,7 @@
 // Zaseki seki1,seki2,seki3,seki4,seki5,seki6,seki7,seki8,seki9,seki10,seki11,seki12;
 // ZasekiLine sekiLine1,sekiline2,sekiline3,sekiline4,sekiline5,sekiline6,sekiline7,sekiline8,sekiline9,sekiline10,sekiline11,sekiline12;
-float gamen_hiritu=1;
-// float gamen_hiritu=1.5;
+// float gamen_hiritu=1;
+float gamen_hiritu=1.5;
 //////席の座標
 //oneto3は上司席のx軸の間隔,onaziXは同じ列の席間,retukanXは違う列の間。
 float oneto3=250*gamen_hiritu;
@@ -24,7 +24,7 @@ boolean zaseki_maru_botan=true; //座席の◯を表示するかどうかの判�
 boolean zaseki_hyou_botan=true; //座席表の枠を表示するかどうかの判定。ボタンクリック。デフォでオン。
 boolean zaseki_line_triger=false; //線を表示するかの判定。起動時はオフ。なんかいい感じのエフェクトで表示させたいよね。
 boolean message=false;//メッセージ画面に遷移するかの判定。
-boolean layout=false;//レイアウト変更に関する判定。未実装。
+boolean about_us=false;//レイアウト変更に関する判定。未実装。
 boolean mainMode=true;//メイン画面のオンオフの判定。デフォルトはオン。
 boolean readme=false;//リドミ画面に遷移する判定。機能は実装してるけど、遷移先は空。
 boolean popSwitch=false;
@@ -49,8 +49,8 @@ String name="a";
 
 void setup(){
 
-  size(1260,720);
-  // size(1920,1080);
+  // size(1260,720);
+  size(1920,1080);
 
 
   // seki1 = new Zaseki(100,100,1);
@@ -126,7 +126,7 @@ void switchs(){
   textAlign(CENTER,CENTER);
   fill(255);
   text("readme",switchX*gamen_hiritu,switchY1*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  text("layout",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+  text("about_us",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
   text("message",switchX*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
 
   //メッセージのSwitch実装。
@@ -144,14 +144,14 @@ void switchs(){
 
   //レイアウトスイッチの未実装.
   if(mousePressed==true&&switchX*gamen_hiritu<mouseX&&mouseX<(switchX+100)*gamen_hiritu&&switchY2*gamen_hiritu<mouseY&&mouseY<(switchY2+50)*gamen_hiritu){
-    layout=true;
+    about_us=true;
   }
 
   if(switchX*gamen_hiritu<mouseX&&mouseX<(switchX+100)*gamen_hiritu&&switchY2*gamen_hiritu<mouseY&&mouseY<(switchY2+50)*gamen_hiritu){
     fill(255);
     rect(switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
     fill(0);
-    text("layout",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+    text("about_us",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
     noFill();
   }
 
@@ -382,7 +382,7 @@ void message_pop_hinagata(float info_x,float info_y,String num,String position,S
   float ymin=info_y-gosa;
   float ymax=info_y+gosa;
 
-  PImage pop_image=loadImage("messageImage"+num+"_midle.jpg");
+  PImage pop_image=loadImage("messageImage"+num+"_large.jpg");
 
   if (mousePressed==true&&mouseX < xmax && xmin < mouseX && mouseY < ymax && ymin < mouseY){
     popSwitch=true;
@@ -405,7 +405,7 @@ void message_pop_hinagata(float info_x,float info_y,String num,String position,S
     rect(1070*gamen_hiritu,130*gamen_hiritu,40*gamen_hiritu,40*gamen_hiritu);
     line(1070*gamen_hiritu,130*gamen_hiritu,1110*gamen_hiritu,170*gamen_hiritu);
     line(1110*gamen_hiritu,130*gamen_hiritu,1070*gamen_hiritu,170*gamen_hiritu);
-    if (mousePressed==true&&mouseX < 1110&& 1070 < mouseX && mouseY < 170 && 130 < mouseY){
+    if (mousePressed==true&&mouseX < 1110*gamen_hiritu&& 1070*gamen_hiritu < mouseX && mouseY < 170*gamen_hiritu && 130*gamen_hiritu < mouseY){
       popSwitch=false;
     }
 
