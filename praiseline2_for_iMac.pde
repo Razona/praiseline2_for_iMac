@@ -722,7 +722,10 @@ void readme_page(){
 
 //about usなページの実装。もうイラレでいいかな。
 void about_us_page(){
+
   PImage about_image=loadImage("about_us.png");
+  if (gamen_hiritu==1.5)about_image=loadImage("about_us_large.png");
+
   image(about_image,500*gamen_hiritu,75*gamen_hiritu);
 
   //backボタンの実装。
