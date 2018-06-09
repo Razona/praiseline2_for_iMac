@@ -1,7 +1,7 @@
 // Zaseki seki1,seki2,seki3,seki4,seki5,seki6,seki7,seki8,seki9,seki10,seki11,seki12;
 // ZasekiLine sekiLine1,sekiline2,sekiline3,sekiline4,sekiline5,sekiline6,sekiline7,sekiline8,sekiline9,sekiline10,sekiline11,sekiline12;
-// float gamen_hiritu=1;
-float gamen_hiritu=1.5;
+float gamen_hiritu=1;
+// float gamen_hiritu=1.5;
 //////席の座標
 //oneto3は上司席のx軸の間隔,onaziXは同じ列の席間,retukanXは違う列の間。
 float oneto3=250*gamen_hiritu;
@@ -49,8 +49,8 @@ String name="a";
 
 void setup(){
 
-  // size(1260,720);
-  size(1920,1080);
+  size(1260,720);
+  // size(1920,1080);
 
 
   // seki1 = new Zaseki(100,100,1);
@@ -71,8 +71,6 @@ void setup(){
 void draw(){
   frameRate(10);
   stroke(255);
-
-
 
   println(timer);
 
@@ -103,6 +101,11 @@ void draw(){
     return;
   }
 
+  if (about_us==true){
+    about_us_page();
+    return;
+  }
+
   if(mainMode==true){
     mainMode();
   }
@@ -126,7 +129,7 @@ void switchs(){
   textAlign(CENTER,CENTER);
   fill(255);
   text("readme",switchX*gamen_hiritu,switchY1*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  text("about_us",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+  text("about us",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
   text("message",switchX*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
 
   //メッセージのSwitch実装。
@@ -142,7 +145,7 @@ void switchs(){
     noFill();
   }
 
-  //レイアウトスイッチの未実装.
+  //about_usスイッチの実装。
   if(mousePressed==true&&switchX*gamen_hiritu<mouseX&&mouseX<(switchX+100)*gamen_hiritu&&switchY2*gamen_hiritu<mouseY&&mouseY<(switchY2+50)*gamen_hiritu){
     about_us=true;
   }
@@ -151,7 +154,7 @@ void switchs(){
     fill(255);
     rect(switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
     fill(0);
-    text("about_us",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+    text("about us",switchX*gamen_hiritu,switchY2*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
     noFill();
   }
 
@@ -383,6 +386,11 @@ void message_pop_hinagata(float info_x,float info_y,String num,String position,S
   float ymax=info_y+gosa;
 
   PImage pop_image=loadImage("messageImage"+num+"_large.jpg");
+
+if (gamen_hiritu==1){
+    pop_image=loadImage("messageImage"+num+"_midle.jpg");
+}
+
 
   if (mousePressed==true&&mouseX < xmax && xmin < mouseX && mouseY < ymax && ymin < mouseY){
     popSwitch=true;
@@ -709,6 +717,36 @@ void readme_page(){
   }
 
 
+}
+
+
+//about usなページの実装。もうイラレでいいかな。
+void about_us_page(){
+  PImage about_image=loadImage("about_us.png");
+  image(about_image,500*gamen_hiritu,75*gamen_hiritu);
+
+  //backボタンの実装。
+  noFill();
+  rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+  textSize(16*gamen_hiritu);
+  textAlign(CENTER,CENTER);
+  fill(255);
+  text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+  noFill();
+
+
+
+  if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
+    about_us=false;
+  }
+
+  if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
+    fill(255);
+    rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+    fill(0);
+    text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+    noFill();
+  }
 }
 //下2つのクラスは削除予定
 //座席の持ち主の情報を管理するクラス。でもこれいらないかも？
