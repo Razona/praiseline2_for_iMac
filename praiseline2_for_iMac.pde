@@ -1,7 +1,7 @@
 // Zaseki seki1,seki2,seki3,seki4,seki5,seki6,seki7,seki8,seki9,seki10,seki11,seki12;
 // ZasekiLine sekiLine1,sekiline2,sekiline3,sekiline4,sekiline5,sekiline6,sekiline7,sekiline8,sekiline9,sekiline10,sekiline11,sekiline12;
 float gamen_hiritu=1;
-
+// float gamen_hiritu=1.5;
 //////席の座標
 //oneto3は上司席のx軸の間隔,onaziXは同じ列の席間,retukanXは違う列の間。
 float oneto3=250*gamen_hiritu;
@@ -38,6 +38,13 @@ float switchX = 120 ;
 float switchY1 = 460 ;
 float switchY2 = 540 ;
 float switchY3 = 620 ;
+
+float xx=0;
+float yy=0;
+String num="a";
+String position="a";
+String name="a";
+
 
 
 void setup(){
@@ -309,17 +316,45 @@ void praisline(){
 }
 
 void message_pop(){
-  message_pop_hinagata(x9,y3,"1");
+  float gosa=20*gamen_hiritu;
 
+
+  if (mousePressed==true&&mouseX < x9+gosa && x9-gosa < mouseX && mouseY < y3+gosa && y3-gosa < mouseY){
+    xx=x9;
+    yy=y3;
+    num="3";
+    position="designer";
+    name="Motino Runa";
+  }
+
+  if (mousePressed==true&&mouseX < x4+gosa && x4-gosa < mouseX && mouseY < y5+gosa && y5-gosa < mouseY){
+    xx=x4;
+    yy=y5;
+    num="8";
+    position="director";
+    name="Hino Rinka";
+  }
+
+  if (mousePressed==true&&mouseX < x6+gosa && x6-gosa < mouseX && mouseY < y2+gosa && y2-gosa < mouseY){
+    xx=x6;
+    yy=y2;
+    num="5";
+    position="designer";
+    name="Sakashita Atsuko";
+  }
+
+  message_pop_hinagata(xx,yy,num,position,name);
 }
 
-void message_pop_hinagata(float info_x,float info_y,String num){
-  float gosa=20;
+void message_pop_hinagata(float info_x,float info_y,String num,String position,String name){
+  float gosa=20*gamen_hiritu;
 
   float xmin=info_x-gosa;
   float xmax=info_x+gosa;
   float ymin=info_y-gosa;
   float ymax=info_y+gosa;
+
+  PImage pop_image=loadImage("messageImage"+num+"_midle.jpg");
 
   if (mousePressed==true&&mouseX < xmax && xmin < mouseX && mouseY < ymax && ymin < mouseY){
     popSwitch=true;
@@ -328,8 +363,17 @@ void message_pop_hinagata(float info_x,float info_y,String num){
   if(popSwitch==true){
     fill(0,200);
     stroke(255*gamen_hiritu,200*gamen_hiritu);
+    noStroke();
     rect(490*gamen_hiritu,130*gamen_hiritu,620*gamen_hiritu,500*gamen_hiritu);
-    fill(50,230);
+
+    image(pop_image,460*gamen_hiritu,130*gamen_hiritu);
+    textSize(40);
+    fill(255);
+    text(position,460*gamen_hiritu,520*gamen_hiritu,650*gamen_hiritu,80*gamen_hiritu);
+    text(name,460*gamen_hiritu,570*gamen_hiritu,650*gamen_hiritu,80*gamen_hiritu);
+
+    fill(50,200);
+    stroke(255*gamen_hiritu,200*gamen_hiritu);
     rect(1070*gamen_hiritu,130*gamen_hiritu,40*gamen_hiritu,40*gamen_hiritu);
     line(1070*gamen_hiritu,130*gamen_hiritu,1110*gamen_hiritu,170*gamen_hiritu);
     line(1110*gamen_hiritu,130*gamen_hiritu,1070*gamen_hiritu,170*gamen_hiritu);
@@ -354,7 +398,7 @@ void seki_info(){
 
     seki_info_hinagata("director","Sugiura Keisuke",x4,y2);
     seki_info_hinagata("director","Uchida Hideo",x5,y2);
-    seki_info_hinagata("director","Yoshioka Kano",x6,y2);
+    seki_info_hinagata("director","Sakashita Atsuko",x6,y2);
     seki_info_hinagata("director","Inoue Hikaru",x7,y2);
     seki_info_hinagata("catalyst","Koizumi Ginzou",x8,y2);
     seki_info_hinagata("catalyst","Higashiyama Waka",x9,y2);
@@ -363,8 +407,8 @@ void seki_info(){
     seki_info_hinagata("director","Tazawa Makiko",x5,y3);
     seki_info_hinagata("director","Shiomi Yoshirou",x6,y3);
     seki_info_hinagata("director","Yanagihara Kaho",x7,y3);
-    seki_info_hinagata("engineer","Niikura Taizou",x8,y3);
-    seki_info_hinagata("engineer","Niikura Taizou",x9,y3);
+    seki_info_hinagata("designer","Maruyama Hitomi",x8,y3);
+    seki_info_hinagata("designer","Motino Runa",x9,y3);
 
     seki_info_hinagata("designer","Kameyama Kureha",x4,y4);
     seki_info_hinagata("designer","Koga Tomoji",x5,y4);
@@ -373,7 +417,7 @@ void seki_info(){
     seki_info_hinagata("engineer","Shiraishi Yoshinobu",x8,y4);
     seki_info_hinagata("engineer","Mimura Haruna",x9,y4);
 
-    seki_info_hinagata("designer","Hotta Haruka",x4,y5);
+    seki_info_hinagata("director","Hino Rinka",x4,y5);
     seki_info_hinagata("designer","Umemura Atsuhiko",x5,y5);
     seki_info_hinagata("designer","Nishi Masayasu",x6,y5);
     seki_info_hinagata("engineer","KawaseT oshie",x7,y5);
