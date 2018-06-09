@@ -196,23 +196,39 @@ void seki_maru(){
 
     fill(255);
 
+    noStroke();
+    fill(30,180,30);
     ellipse(x1,y1,seki_size,seki_size);
+    fill(255);
+    stroke(255);
     ellipse(x2,y1,seki_size,seki_size);
     ellipse(x3,y1,seki_size,seki_size);
 
     ellipse(x4,y2,seki_size,seki_size);
     ellipse(x5,y2,seki_size,seki_size);
+    noStroke();
+    fill(180,30,30);
     ellipse(x6,y2,seki_size,seki_size);
+    fill(255);
+    stroke(255);
     ellipse(x7,y2,seki_size,seki_size);
     ellipse(x8,y2,seki_size,seki_size);
     ellipse(x9,y2,seki_size,seki_size);
 
     ellipse(x4,y3,seki_size,seki_size);
+    noStroke();
+    fill(180,30,30);
     ellipse(x5,y3,seki_size,seki_size);
+    fill(255);
+    stroke(255);
     ellipse(x6,y3,seki_size,seki_size);
     ellipse(x7,y3,seki_size,seki_size);
     ellipse(x8,y3,seki_size,seki_size);
+    noStroke();
+    fill(180,30,30);
     ellipse(x9,y3,seki_size,seki_size);
+    fill(255);
+    stroke(255);
 
     //コイツの画面って設定。　円のサイズも大きいし色も赤。
     fill(180,30,30);
@@ -227,7 +243,11 @@ void seki_maru(){
     ellipse(x8,y4,seki_size,seki_size);
     ellipse(x9,y4,seki_size,seki_size);
 
+    noStroke();
+    fill(180,30,30);
     ellipse(x4,y5,seki_size,seki_size);
+    fill(255);
+    stroke(255);
     ellipse(x5,y5,seki_size,seki_size);
     ellipse(x7,y5,seki_size,seki_size);
     ellipse(x6,y5,seki_size,seki_size);
@@ -286,7 +306,6 @@ void praisline(){
   line(x5,y3,x5,y3);
   line(x7,y3,x5,y3);
   line(x6,y4,x2,y1);
-  line(x4,y4,x5,y3);
   line(x7,y4,x6,y3);
   line(x7,y4,x3,y2);
   line(x7,y4,x2,y1);
@@ -306,6 +325,7 @@ void praisline(){
   line(x4,y4,x4,y5);
   line(x4,y4,x9,y3);
   line(x4,y4,x6,y2);
+  line(x4,y4,x5,y3);
 
   //自分宛の線の色。今は仮に緑にしてる。
   stroke(30,180,30);
@@ -343,6 +363,14 @@ void message_pop(){
     name="Sakashita Atsuko";
   }
 
+  if (mousePressed==true&&mouseX < x5+gosa && x5-gosa < mouseX && mouseY < y3+gosa && y3-gosa < mouseY){
+    xx=x5;
+    yy=y3;
+    num="6";
+    position="director";
+    name="Araki Chikako";
+  }
+
   message_pop_hinagata(xx,yy,num,position,name);
 }
 
@@ -364,7 +392,7 @@ void message_pop_hinagata(float info_x,float info_y,String num,String position,S
     fill(0,200);
     stroke(255*gamen_hiritu,200*gamen_hiritu);
     noStroke();
-    rect(490*gamen_hiritu,130*gamen_hiritu,620*gamen_hiritu,500*gamen_hiritu);
+    rect(460*gamen_hiritu,140*gamen_hiritu,660*gamen_hiritu,510*gamen_hiritu);
 
     image(pop_image,460*gamen_hiritu,130*gamen_hiritu);
     textSize(40);
@@ -404,13 +432,13 @@ void seki_info(){
     seki_info_hinagata("catalyst","Higashiyama Waka",x9,y2);
 
     seki_info_hinagata("director","Nozaki Rui",x4,y3);
-    seki_info_hinagata("director","Tazawa Makiko",x5,y3);
+    seki_info_hinagata("director","Araki Chikako",x5,y3);
     seki_info_hinagata("director","Shiomi Yoshirou",x6,y3);
     seki_info_hinagata("director","Yanagihara Kaho",x7,y3);
     seki_info_hinagata("designer","Maruyama Hitomi",x8,y3);
     seki_info_hinagata("designer","Motino Runa",x9,y3);
-
-    seki_info_hinagata("designer","Kameyama Kureha",x4,y4);
+    seki_info_hinagata_You("You","",x4,y4);
+    // seki_info_hinagata("You","Kameyama Kureha",x4,y4);
     seki_info_hinagata("designer","Koga Tomoji",x5,y4);
     seki_info_hinagata("designer","Seo Masako",x6,y4);
     seki_info_hinagata("designer","Murase Tokio",x7,y4);
@@ -459,9 +487,31 @@ void seki_info_hinagata(String katagaki,String name,float info_x,float info_y){
     text(name,info_x,info_y+5*gamen_hiritu,100*gamen_hiritu,40*gamen_hiritu);
     textSize(16*gamen_hiritu);
   }
+}
+
+void seki_info_hinagata_You(String katagaki,String name,float info_x,float info_y){
+  //マウスオーバーの判定を行うif文章。中身は未実装。
+  //マウスオーバーしてたら四角と文章を作る的な。
+
+  float gosa=20*gamen_hiritu;
+
+  float xmin=info_x-gosa;
+  float xmax=info_x+gosa;
+  float ymin=info_y-gosa;
+  float ymax=info_y+gosa;
+
+  if (mouseX < xmax && xmin < mouseX && mouseY < ymax && ymin < mouseY){
+    fill(0);
+    stroke(255);
+    rect(info_x,info_y,100*gamen_hiritu,50*gamen_hiritu);
 
 
-
+    fill(255);
+    textAlign(CENTER,CENTER);
+    text(katagaki,info_x,info_y+5*gamen_hiritu,100*gamen_hiritu,40*gamen_hiritu);
+    textSize(16*gamen_hiritu);
+    fill(255);
+  }
 }
 
 
