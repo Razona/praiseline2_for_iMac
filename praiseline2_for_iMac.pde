@@ -579,28 +579,12 @@ void mousePressed(){
 }
 
 //メッセージ閲覧画面。画像がなきゃ始まらない。
+//画像の名前がめっちゃバラバラな件をどうにかできたら良いんだけどなぁ
 void message_mode(){
-  noFill();
-  rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  textSize(16*gamen_hiritu);
-  textAlign(CENTER,CENTER);
-  fill(255);
-  text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  noFill();
 
+  //backボタンの実装。
+  back_botan();
 
-
-  if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
-    message=false;
-  }
-
-  if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
-    fill(255);
-    rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-    fill(0);
-    text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-    noFill();
-  }
 
   message_image_prv();
 }
@@ -644,40 +628,9 @@ void logo(){
   image(logo,40*gamen_hiritu,70*gamen_hiritu,253*1.3*gamen_hiritu,201*1.3*gamen_hiritu);
 }
 
-void mainMode(){
-  //左下にスイッチを表示する。
 
 
-    logo();
-
-    switchs();
-
-    //オフィスのレイアウトを表示。
-    if (zaseki_hyou_botan ==true){
-      zaseki_hyou();
-    }
-
-
-    //線を表示。
-    praisline();
-
-
-    //座席に合わせて円を表示。基本はオフにするか迷う。
-    if(zaseki_maru_botan==true){
-      seki_maru();
-    }
-
-    //線に沿って光の玉が動く。
-    praiseline_ensyutu_list();
-
-
-
-
-    seki_info();
-
-    message_pop();
-}
-
+//画像データで実装してます。
 void readme_page(){
 
   //全体の枠
@@ -694,28 +647,7 @@ void readme_page(){
   //
 
   //backボタン関係
-  noFill();
-  rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  textSize(16*gamen_hiritu);
-  textAlign(CENTER,CENTER);
-  fill(255);
-  text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  noFill();
-
-
-
-  if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
-    readme=false;
-  }
-
-  if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
-    fill(255);
-    rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-    fill(0);
-    text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-    noFill();
-  }
-
+  back_botan();
 
 }
 
@@ -729,28 +661,9 @@ void about_us_page(){
   image(about_image,500*gamen_hiritu,75*gamen_hiritu);
 
   //backボタンの実装。
-  noFill();
-  rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  textSize(16*gamen_hiritu);
-  textAlign(CENTER,CENTER);
-  fill(255);
-  text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-  noFill();
-
-
-
-  if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
-    about_us=false;
-  }
-
-  if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
-    fill(255);
-    rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-    fill(0);
-    text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
-    noFill();
-  }
+  back_botan();
 }
+
 //下2つのクラスは削除予定
 //座席の持ち主の情報を管理するクラス。でもこれいらないかも？
 // class Zaseki{
@@ -785,3 +698,71 @@ void about_us_page(){
 //     line(ZasekiX1,ZasekiY1,ZasekiX2,ZasekiY2);
 //   }
 // }
+
+
+//各ページに配置するバックボタン。強引なコーディング。
+//新しいページを作ったら
+void back_botan(){
+  //表示を司ってる。
+  noFill();
+  rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+  textSize(16*gamen_hiritu);
+  textAlign(CENTER,CENTER);
+  fill(255);
+  text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+  noFill();
+
+//新しいページを作ったらここに変数名を追加。
+//遷移関係の変数をここでfalseにしてます。
+  if(mousePressed==true&&100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
+    about_us=false;
+    message=false;
+    readme=false;
+  }
+
+//マウスオーバーさせた時に色を反転させてる。
+  if(100*gamen_hiritu<mouseX&&mouseX<200*gamen_hiritu&&switchY3*gamen_hiritu<mouseY&&mouseY<(switchY3+50)*gamen_hiritu){
+    fill(255);
+    rect(100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+    fill(0);
+    text("back",100*gamen_hiritu,switchY3*gamen_hiritu,100*gamen_hiritu,50*gamen_hiritu);
+    noFill();
+  }
+}
+
+
+//TOPページの処理は全てこの中に入ってます。
+
+void mainMode(){
+  //左下にスイッチを表示する。
+
+
+    logo();
+
+    switchs();
+
+    //オフィスのレイアウトを表示。
+    if (zaseki_hyou_botan ==true){
+      zaseki_hyou();
+    }
+
+
+    //線を表示。
+    praisline();
+
+
+    //座席に合わせて円を表示。基本はオフにするか迷う。
+    if(zaseki_maru_botan==true){
+      seki_maru();
+    }
+
+    //線に沿って光の玉が動く。
+    praiseline_ensyutu_list();
+
+
+
+
+    seki_info();
+
+    message_pop();
+}
